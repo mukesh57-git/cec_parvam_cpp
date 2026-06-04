@@ -1,0 +1,42 @@
+#ifndef BOOK_H
+#define BOOK_H
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class Book {
+    private:
+        int id;
+        string title;
+        string author;
+        int year;
+        bool isIssued;
+    
+    public:
+        Book();
+        Book(int id, string title, string author, int year);
+        
+        // Getters
+        int getId() const;
+        string getTitle() const;
+        string getAuthor() const;
+        int getYear() const;
+        bool getIsIssued() const;
+        
+        // Setters
+        void setTitle(const string& title);
+        void setAuthor(const string& author);
+        void setYear(int year);
+        void issue();
+        void returnBook();
+        
+        // Display
+        void display() const;
+        
+        // Serialization for file I/O
+        string toFileString() const;
+        static Book fromFileString(const string& line);
+};
+
+#endif
