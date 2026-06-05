@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParvaM C++ Quiz - Day 5 Inheritance</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Confetti Canvas for Winner Screen -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Game overlay for status cards (Correct, Wrong, Steal, Time Out) -->
+  <div id="game-overlay" class="game-overlay">
+    <div class="overlay-content glass-panel">
+      <div id="overlay-title" class="overlay-title">CORRECT!</div>
+      <div id="overlay-subtitle" class="overlay-subtitle">Team Alpha gets 1 point</div>
+    </div>
+  </div>
+
+  <!-- MAIN SCENARIO VIEWS -->
+  <div class="container py-4 my-auto">
+
+    <!-- 0. ROOM SELECTION SCREEN -->
+    <div id="room-screen" class="game-screen active">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+          <div class="glass-panel p-5">
+            <div class="text-center mb-4">
+              <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" class="welcome-logo" style="height: 100px;">
+              <h1 class="display-5 text-white mb-2">ParvaM C++ Quiz Host</h1>
+              <p class="text-secondary fs-5">Select a Room to begin or resume your session</p>
+            </div>
+            
+            <div id="rooms-list-container" class="row g-4 mb-3">
+              <!-- Room cards will be dynamically injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. SPLASH / WELCOME SCREEN -->
+    <div id="splash-screen" class="game-screen">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="glass-panel p-5 text-center">
+            <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" class="welcome-logo">
+            <h1 class="display-5 text-white mb-3">10-Day C++ Classroom Training</h1>
+            <h2 class="h4 mb-4" style="color: #34d399;">Day 5 Quiz: Inheritance in C++</h2>
+            <p class="text-secondary mb-5">60 Interactive Questions: 30 Inheritance Trivia &amp; 30 C++ Inheritance Concepts. Turn-based steals with physical classroom challenges!</p>
+            <div class="d-flex gap-3">
+              <button id="btn-splash-back" class="btn btn-control w-25">Rooms</button>
+              <button id="btn-splash-next" class="btn btn-premium flex-grow-1 btn-lg">
+                <i class="bi bi-play-fill me-2"></i>Configure Game
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SETUP / TEAM NAMES SCREEN -->
+    <div id="setup-screen" class="game-screen">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="glass-panel p-5">
+            <div class="text-center mb-4">
+              <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" style="height: 60px; width: auto;" class="mb-3">
+              <h2 class="text-white">Register Teams</h2>
+              <p class="text-secondary">Enter the names of the two competing classroom squads</p>
+            </div>
+            
+            <div class="mb-4">
+              <label for="input-team-a" class="form-label fw-semibold" style="color: #06b6d4;">Team A Name</label>
+              <input type="text" id="input-team-a" class="form-control form-input-custom" placeholder="e.g., Code Warriors" value="Code Warriors">
+            </div>
+
+            <div class="mb-5">
+              <label for="input-team-b" class="form-label fw-semibold" style="color: #ec4899;">Team B Name</label>
+              <input type="text" id="input-team-b" class="form-control form-input-custom" placeholder="e.g., OOP Wizards" value="OOP Wizards">
+            </div>
+
+            <div class="d-flex gap-3">
+              <button id="btn-setup-back" class="btn btn-control w-25">Back</button>
+              <button id="btn-setup-next" class="btn btn-premium flex-grow-1">Next: First Turn Challenge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PHYSICAL ACTIVITY / FIRST TURN SCREEN -->
+    <div id="activity-screen" class="game-screen">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="glass-panel p-5 text-center">
+            <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" style="height: 60px; width: auto;" class="mb-3">
+            <h2 id="activity-title" class="text-white mb-3">Who Goes First?</h2>
+            
+            <div class="alert alert-info border-0 text-start mb-4" style="background: rgba(59, 130, 246, 0.1); color: #93c5fd;">
+              <h6 class="fw-bold mb-2"><i class="bi bi-trophy-fill me-2"></i>Trainer Action Required:</h6>
+              <p class="small mb-0">Run a quick physical or mental activity in class (e.g. Rock Paper Scissors, fastest hand up, quick typing speed, math equation). The winning team gets the first turn!</p>
+            </div>
+
+            <p class="text-secondary mb-4">Click the team that won the challenge:</p>
+
+            <div class="row mb-5">
+              <div class="col-6">
+                <button id="btn-activity-a" class="btn btn-outline-info w-100 py-3 fw-bold team-select-card team-a-border text-truncate">
+                  Team A
+                </button>
+              </div>
+              <div class="col-6">
+                <button id="btn-activity-b" class="btn btn-outline-danger w-100 py-3 fw-bold team-select-card team-b-border text-truncate">
+                  Team B
+                </button>
+              </div>
+            </div>
+
+            <button id="btn-start-game" class="btn btn-premium w-100 btn-lg" disabled>
+              <i class="bi bi-rocket-takeoff-fill me-2"></i>Start Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ACTIVE GAME SCREEN -->
+    <div id="game-screen" class="game-screen">
+      <!-- Game Top Bar -->
+      <div class="row mb-4 align-items-center">
+        <div class="col-4 text-start">
+          <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" class="app-logo">
+        </div>
+        <div class="col-4 text-center">
+          <span id="game-round-info" class="fs-5 fw-bold text-secondary">Question 1 of 60</span>
+        </div>
+        <div class="col-4 text-end">
+          <div id="game-active-indicator" class="turn-indicator team-a">
+            <i class="bi bi-lightning-charge-fill me-1"></i>Active Turn: <span id="game-active-team-name">Team A</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Game Board -->
+      <div class="row g-4 align-items-center">
+        <!-- Team A Score Panel -->
+        <div class="col-lg-3 col-md-4 order-2 order-md-1">
+          <div id="panel-team-a" class="team-panel team-a glass-panel">
+            <h3 id="panel-team-a-name" class="h5 text-truncate" style="color: #22d3ee;">Team A</h3>
+            <div id="score-team-a" class="team-score" style="color: #06b6d4;">0</div>
+            <div class="text-secondary small">Points</div>
+          </div>
+        </div>
+
+        <!-- Center Question/Timer Board -->
+        <div class="col-lg-6 col-md-4 order-1 order-md-2">
+          <div class="text-center mb-3">
+            <div id="timer-ring" class="timer-container">
+              <svg class="timer-svg">
+                <circle class="timer-circle-bg" cx="45" cy="45" r="42"></circle>
+                <circle id="timer-progress" class="timer-circle-progress" cx="45" cy="45" r="42"></circle>
+              </svg>
+              <div id="timer-digit" class="timer-text">30</div>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 text-center">
+            <div id="game-category-badge" class="badge-category badge-fact">Inheritance Trivia</div>
+            <div id="game-question-text" class="question-text text-white">Question text goes here...</div>
+            
+            <div id="options-container" class="d-flex flex-column gap-3">
+              <!-- Options injected dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Team B Score Panel -->
+        <div class="col-lg-3 col-md-4 order-3">
+          <div id="panel-team-b" class="team-panel team-b glass-panel">
+            <h3 id="panel-team-b-name" class="h5 text-truncate" style="color: #f472b6;">Team B</h3>
+            <div id="score-team-b" class="team-score" style="color: #ec4899;">0</div>
+            <div class="text-secondary small">Points</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. WINNER / CELEBRATION SCREEN -->
+    <div id="winner-screen" class="game-screen">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="glass-panel p-5 text-center">
+            <img src="../../Images/ParvaM_Logo.avif" alt="ParvaM Logo" style="height: 100px; width: auto;" class="mb-4">
+            <div class="text-warning mb-3">
+              <i class="bi bi-trophy-fill" style="font-size: 5rem; filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.4));"></i>
+            </div>
+            <h1 id="winner-title" class="display-4 text-white mb-2">TEAM A WINS!</h1>
+            <p id="winner-subtitle" class="fs-4 text-secondary mb-5">Score: 32 - 28</p>
+
+            <div class="row g-3 mb-5">
+              <div class="col-6">
+                <div class="glass-panel p-3">
+                  <div id="result-team-a-name" class="fw-bold small text-truncate" style="color: #22d3ee;">Team A</div>
+                  <div id="result-team-a-score" class="fs-2 fw-bold text-white">0</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="glass-panel p-3">
+                  <div id="result-team-b-name" class="fw-bold small text-truncate" style="color: #f472b6;">Team B</div>
+                  <div id="result-team-b-score" class="fs-2 fw-bold text-white">0</div>
+                </div>
+              </div>
+            </div>
+
+            <button id="btn-restart" class="btn btn-premium w-100 btn-lg">
+              <i class="bi bi-arrow-clockwise me-2"></i>Play Again
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTROL FOOTER (Trainer Interface Controls) -->
+  <footer class="control-bar text-center mt-auto">
+    <div class="container d-flex justify-content-center gap-3 align-items-center">
+      <button id="btn-rooms" class="btn btn-control">
+        <i class="bi bi-door-open-fill me-1"></i>Rooms Panel
+      </button>
+      <button id="btn-pause" class="btn btn-control">
+        <i class="bi bi-pause-fill me-1"></i>Pause Timer
+      </button>
+      <button id="btn-skip" class="btn btn-control">
+        <i class="bi bi-skip-forward-fill me-1"></i>Skip / Reveal
+      </button>
+      <span class="text-secondary small d-none d-md-inline">| Shortcuts: [Space] Pause/Resume</span>
+    </div>
+  </footer>
+
+  <!-- Custom Password Overlay Modal -->
+  <div id="password-overlay" class="game-overlay">
+    <div class="overlay-content glass-panel p-4" style="max-width: 400px; width: 90%;">
+      <h3 class="text-white mb-2">Password Required</h3>
+      <p class="text-secondary small mb-4">Enter administrative password to perform this action.</p>
+      <input type="password" id="input-admin-password" class="form-control form-input-custom mb-4 text-center" placeholder="••••••••">
+      <div id="password-error-msg" class="text-danger small mb-3 d-none">Incorrect password. Try again!</div>
+      <div class="d-flex gap-2">
+        <button id="btn-password-cancel" class="btn btn-control flex-fill">Cancel</button>
+        <button id="btn-password-confirm" class="btn btn-premium flex-fill">Verify</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Question Database and Application Scripts -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

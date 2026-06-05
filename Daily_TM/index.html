@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Productivity Reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- LOGIN/REGISTER PAGE -->
+    <div id="authPage" class="auth-container">
+        <div class="auth-split">
+            <!-- LEFT HERO SECTION -->
+            <div class="auth-hero">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <div class="logo-icon">⚡</div>
+                        <span class="logo-text">TaskFlow</span>
+                    </div>
+
+                    <div class="hero-messaging">
+                        <h1>Productivity, Simplified</h1>
+                        <p>Manage tasks like the world's best teams. Beautiful, fast, and intuitive.</p>
+                    </div>
+
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div>
+                                <h3>Smart Organization</h3>
+                                <p>Organize tasks with categories, priorities, and recurring schedules</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div>
+                                <h3>Track Progress</h3>
+                                <p>Real-time analytics showing your productivity trends and patterns</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div>
+                                <h3>Earn Rewards</h3>
+                                <p>Gamified badges, streaks, and achievement system for motivation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">100K+</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">4.9★</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT AUTH SECTION -->
+            <div class="auth-panel">
+                <div class="auth-inner">
+                    <!-- LOGIN FORM -->
+                    <div id="loginForm" class="auth-form active">
+                        <div class="auth-header">
+                            <h2>Welcome back</h2>
+                            <p>Sign in to your account to continue</p>
+                        </div>
+
+                        <form id="loginFormElement">
+                            <div class="form-group">
+                                <label for="loginUsername">Username or Email</label>
+                                <input type="text" id="loginUsername" placeholder="your@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                                    <button type="button" class="toggle-password" data-target="loginPassword">
+                                        <span class="icon">👁</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-options">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="rememberMe">
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#" class="forgot-link">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">Sign In</button>
+                        </form>
+
+                        <div class="auth-switch">
+                            <p>Don't have an account? <button type="button" class="switch-form-btn"
+                                    data-form="register">Create one</button></p>
+                        </div>
+                    </div>
+
+                    <!-- REGISTER FORM -->
+                    <div id="registerForm" class="auth-form">
+                        <div class="auth-header">
+                            <h2>Get started</h2>
+                            <p>Join thousands managing their tasks better</p>
+                        </div>
+
+                        <form id="registerFormElement">
+                            <div class="form-group">
+                                <label for="registerUsername">Full Name</label>
+                                <input type="text" id="registerUsername" placeholder="John Doe" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registerEmail">Email</label>
+                                <input type="email" id="registerEmail" placeholder="your@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="registerPassword" placeholder="••••••••" required>
+                                    <button type="button" class="toggle-password" data-target="registerPassword">
+                                        <span class="icon">👁</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registerConfirm">Confirm Password</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="registerConfirm" placeholder="••••••••" required>
+                                    <button type="button" class="toggle-password" data-target="registerConfirm">
+                                        <span class="icon">👁</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">Create Account</button>
+                        </form>
+
+                        <div class="auth-switch">
+                            <p>Already have an account? <button type="button" class="switch-form-btn"
+                                    data-form="login">Sign in</button></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THEME TOGGLE -->
+                <div class="theme-toggle-wrapper">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APPLICATION -->
+    <div id="mainApp" class="app-container hidden">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-icon">⚡</div>
+                    <span class="logo-text">TaskFlow</span>
+                </div>
+                <button id="sidebarToggle" class="sidebar-toggle">≡</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="tasks">
+                    <span class="nav-icon">✓</span>
+                    <span class="nav-label">Tasks</span>
+                </a>
+                <a href="#" class="nav-item" data-page="timeline">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-label">Timeline</span>
+                </a>
+                <a href="#" class="nav-item" data-page="rewards">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-label">Rewards</span>
+                </a>
+                <a href="#" class="nav-item" data-page="analytics">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span class="nav-label">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="nav-item logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-label">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="app-header">
+                <div class="header-left">
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                    <p class="page-subtitle" id="pageSubtitle">Welcome back</p>
+                </div>
+                <div class="header-right">
+                    <button id="themeToggleApp" class="theme-toggle-btn">🌙</button>
+                </div>
+            </header>
+
+            <!-- PAGES -->
+            <div class="pages-container">
+                <!-- DASHBOARD PAGE -->
+                <section id="dashboardPage" class="page-content active">
+                    <!-- Welcome Section -->
+                    <div class="welcome-section">
+                        <div class="welcome-header">
+                            <div>
+                                <h2 id="greeting">Good morning</h2>
+                                <p id="currentDateTime"></p>
+                            </div>
+                            <div class="welcome-clock" id="liveClock">10:30</div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-card-1">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-content">
+                                <p class="stat-label">Total Tasks</p>
+                                <p class="stat-value" id="dashTotalTasks">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-2">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <p class="stat-label">Completed</p>
+                                <p class="stat-value" id="dashCompletedTasks">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-3">
+                            <div class="stat-icon">❌</div>
+                            <div class="stat-content">
+                                <p class="stat-label">Failed</p>
+                                <p class="stat-value" id="dashFailedTasks">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-4">
+                            <div class="stat-icon">🔄</div>
+                            <div class="stat-content">
+                                <p class="stat-label">Rescheduled</p>
+                                <p class="stat-value" id="dashRescheduledTasks">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Tasks -->
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>Today's Tasks</h3>
+                            <button id="addTaskBtn" class="btn btn-sm btn-primary">+ Add Task</button>
+                        </div>
+                        <div id="todayTasksList" class="tasks-list">
+                            <!-- Tasks will be rendered here -->
+                        </div>
+                    </div>
+
+                    <!-- Productivity Insight -->
+                    <div class="insight-card">
+                        <h3>Your Productivity</h3>
+                        <div class="insight-stats">
+                            <div class="insight-item">
+                                <span class="insight-label">Completion Rate</span>
+                                <span class="insight-value" id="dashCompletionRate">0%</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Current Streak</span>
+                                <span class="insight-value" id="dashCurrentStreak">0</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Total Points</span>
+                                <span class="insight-value" id="dashTotalPoints">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TASKS PAGE -->
+                <section id="tasksPage" class="page-content">
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" id="taskSearch" placeholder="Search tasks..." class="search-input">
+                        </div>
+                        <button id="addTaskBtn2" class="btn btn-primary">+ Add Task</button>
+                    </div>
+
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="completed">Completed</button>
+                        <button class="filter-tab" data-filter="pending">Pending</button>
+                        <button class="filter-tab" data-filter="failed">Failed</button>
+                    </div>
+
+                    <div id="allTasksList" class="tasks-grid">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- TIMELINE PAGE -->
+                <section id="timelinePage" class="page-content">
+                    <div id="timelineContainer" class="timeline">
+                        <!-- Timeline entries will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- REWARDS PAGE -->
+                <section id="rewardsPage" class="page-content">
+                    <div class="rewards-grid">
+                        <div class="reward-card reward-card-1">
+                            <div class="reward-icon">⭐</div>
+                            <p class="reward-label">Total Points</p>
+                            <p class="reward-value" id="rewardPoints">0</p>
+                        </div>
+                        <div class="reward-card reward-card-2">
+                            <div class="reward-icon">🔥</div>
+                            <p class="reward-label">Current Streak</p>
+                            <p class="reward-value"><span id="rewardStreak">0</span> days</p>
+                        </div>
+                        <div class="reward-card reward-card-3">
+                            <div class="reward-icon">🎯</div>
+                            <p class="reward-label">Level</p>
+                            <p class="reward-value" id="rewardLevel">Beginner</p>
+                        </div>
+                        <div class="reward-card reward-card-4">
+                            <div class="reward-icon">🏅</div>
+                            <p class="reward-label">Achievements</p>
+                            <p class="reward-value" id="rewardBadges">0</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Badges & Achievements</h3>
+                        <div id="achievementsList" class="achievements-grid">
+                            <!-- Achievements rendered here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ANALYTICS PAGE -->
+                <section id="analyticsPage" class="page-content">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Weekly Productivity</h3>
+                            <div id="weeklyChart" class="chart">
+                                <!-- Chart will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Task Distribution</h3>
+                            <div id="distributionChart" class="chart">
+                                <!-- Chart will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Statistics</h3>
+                        <div class="stats-table">
+                            <div class="table-row">
+                                <span>Total Tasks Created</span>
+                                <span id="statTotalCreated">0</span>
+                            </div>
+                            <div class="table-row">
+                                <span>Successfully Completed</span>
+                                <span id="statTotalCompleted">0</span>
+                            </div>
+                            <div class="table-row">
+                                <span>Failed Tasks</span>
+                                <span id="statTotalFailed">0</span>
+                            </div>
+                            <div class="table-row">
+                                <span>Rescheduled Tasks</span>
+                                <span id="statTotalRescheduled">0</span>
+                            </div>
+                            <div class="table-row highlight">
+                                <span>Completion Rate</span>
+                                <span id="statCompletionRate">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SETTINGS PAGE -->
+                <section id="settingsPage" class="page-content">
+                    <div class="settings-grid">
+                        <div class="settings-section">
+                            <h3>Appearance</h3>
+                            <div class="setting-item">
+                                <label for="themeSetting">Theme</label>
+                                <div class="theme-options">
+                                    <button class="theme-option active" data-theme="auto">Auto</button>
+                                    <button class="theme-option" data-theme="light">Light</button>
+                                    <button class="theme-option" data-theme="dark">Dark</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Account</h3>
+                            <div class="setting-item">
+                                <label>Username</label>
+                                <p id="settingsUsername" class="setting-value">-</p>
+                            </div>
+                            <div class="setting-item">
+                                <label>Member Since</label>
+                                <p id="settingsMemberSince" class="setting-value">-</p>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Data</h3>
+                            <button id="exportDataBtn" class="btn btn-secondary">Export Data as JSON</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- TASK MODAL -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Task</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+
+            <form id="taskFormElement">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" placeholder="What needs to be done?" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory" required>
+                            <option value="">Select category</option>
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Health">Health</option>
+                            <option value="Education">Education</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority" required>
+                            <option value="">Select priority</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDate">Due Date</label>
+                        <input type="date" id="taskDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskTime">Due Time</label>
+                        <input type="time" id="taskTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" id="taskRecurring">
+                        <span>Repeat daily</span>
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                    <button type="button" class="btn btn-secondary" id="modalCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION CONTAINER -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
